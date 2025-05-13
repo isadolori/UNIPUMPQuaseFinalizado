@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.auth.FirebaseAuth
 
 
 class TelaConfig : AppCompatActivity() {
@@ -113,7 +114,7 @@ class TelaConfig : AppCompatActivity() {
             // Ação para deslogar
             Toast.makeText(context, "Deslogando...", Toast.LENGTH_SHORT).show()
 
-            // FirebaseAuth.getInstance().signOut()
+            FirebaseAuth.getInstance().signOut()
             val intent = Intent(context, TelaLogin::class.java)
             context.startActivity(intent)
             intent.putExtra("tipo", "aluno") // Adicione isso

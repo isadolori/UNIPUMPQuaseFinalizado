@@ -8,6 +8,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+
 
 class TelaLogin : AppCompatActivity() {
 
@@ -16,9 +22,11 @@ class TelaLogin : AppCompatActivity() {
     private lateinit var edtEmail: EditText
     private lateinit var edtSenha: EditText
     private lateinit var btnEntrar: AppCompatButton
+    private lateinit var auth: FirebaseAuth
+
 
     // Variável simulando a senha salva
-    private var senhaSalva: String = "12345" // Senha inicial
+    /*private var senhaSalva: String = "12345" // Senha inicial*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +39,12 @@ class TelaLogin : AppCompatActivity() {
         edtSenha = findViewById(R.id.etSenha)
         btnEntrar = findViewById(R.id.btnEntrar)
 
+        auth = FirebaseAuth.getInstance()
+
         var tipo = intent.getStringExtra("tipo")
-        if (tipo == "aluno"){
+        if (tipo == "aluno") {
             edtEmail.hint = "Email ou Telefone"
-        } else if (tipo == "funcionario"){
+        } else if (tipo == "funcionario") {
             edtEmail.hint = "Id"
         }
 
@@ -42,10 +52,10 @@ class TelaLogin : AppCompatActivity() {
         configurarEventos()
 
         // Verifica se há uma nova senha passada pela Intent
-        val novaSenha = intent.getStringExtra("novaSenha")
+        /*val novaSenha = intent.getStringExtra("novaSenha")
         if (novaSenha != null) {
             senhaSalva = novaSenha // Atualiza a senha salva com a nova senha
-        }
+        }*/
     }
 
     private fun configurarEventos() {
@@ -59,9 +69,9 @@ class TelaLogin : AppCompatActivity() {
 
         textEsqueceuSenha.setOnClickListener {
             val intent = Intent(this, TelaEsqueceuSenha::class.java)
-            if (tipo == "aluno"){
+            if (tipo == "aluno") {
                 intent.putExtra("tipo", "aluno")
-            } else if (tipo == "funcionario"){
+            } else if (tipo == "funcionario") {
                 intent.putExtra("tipo", "funcionario")
             }
             startActivity(intent)
@@ -77,53 +87,123 @@ class TelaLogin : AppCompatActivity() {
     private fun onEntrarClick() {
         val usuario = edtEmail.text.toString()
         val senha = edtSenha.text.toString()
+        val tipo = intent.getStringExtra("tipo")
 
-        val tipo = intent.getStringExtra("tipo") ?: run {
-            Toast.makeText(this, "Tipo de usuário não definido.", Toast.LENGTH_SHORT).show()
-            return
-        }
+        if (isValidEmail(usuario) || isValidPhone(usuario) || isValidId(usuario)) {
 
+            auth.signInWithEmailAndPassword(usuario, senha)
+                .addOnCompleteListener { autenticacao -> // resultado do login do usuário
+                    if (autenticacao.isSuccessful) {
+                        // Login bem-sucedido
+                        val intent = if (tipo == "aluno") {
+                            Intent(this, TelaPrincipalAluno::class.java)
+                        } else {
+                            Intent(this, TelaFuncionario::class.java)
+                        }
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        // Erro no login (erro genérico)
+                        Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener { excecao ->
+                    val msgErro = when (excecao) {
+                        is FirebaseAuthWeakPasswordException ->
+                            "Digite uma senha com no mínimo 6 caracteres"
+                        is FirebaseAuthInvalidUserException ->
+                            "Usuário não encontrado ou desativado"
+                        else ->
+                            "Erro ao autenticar: ${excecao.localizedMessage}"
+                    }
 
-        // Para alunos: valida se o e-mail ou telefone é válido
-        if (isValidEmail(usuario) || isValidPhone(usuario)) {
-            // Aqui você deve comparar o e-mail com o que está salvo
-            if (usuario == "aluno@exemplo.com" && senha == senhaSalva) {
-                val intent = Intent(this, TelaPrincipalAluno::class.java)
-                startActivity(intent)
-                finish() // Finaliza a tela de login
-            } else {
-                Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
-            }
+                    Toast.makeText(this, msgErro, Toast.LENGTH_LONG).show()
+                }
+
         } else {
-            // Caso o e-mail/telefone seja inválido
-            Toast.makeText(this, "E-mail ou telefone inválido.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
         }
-        if (isValidId(usuario)){
-            if (usuario == "2413103" && senha == senhaSalva) {
-                // Verifique se o ID e a senha do funcionário estão corretos
-                val intent = Intent(this, TelaFuncionario::class.java)
-                startActivity(intent)
-                finish() // Finaliza a tela de login
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+
+        val tipo = intent.getStringExtra("tipo")
+
+        val usuarioAtual = FirebaseAuth.getInstance().currentUser
+
+        if (usuarioAtual != null){
+
+            val intent = if (tipo == "aluno") {
+                Intent(this, TelaPrincipalAluno::class.java)
             } else {
-                Toast.makeText(this, "ID ou senha inválidos.", Toast.LENGTH_SHORT).show()
+                Intent(this, TelaFuncionario::class.java)
             }
+            startActivity(intent)
+            finish()
+
         }
+
+    }
+
+
+
+
+
+    private fun isValidEmail(email: String): Boolean {
+        // Regex para validar e-mails simples
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
+        return email.matches(emailPattern.toRegex())
+    }
+
+    private fun isValidId(id: String): Boolean {
+        val idPattern = "^[0-9]+$"  // Regex para validar apenas números
+        return id.matches(idPattern.toRegex())
+    }
+
+    private fun isValidPhone(phone: String): Boolean {
+        // Regex para validar números de telefone (aqui estou considerando números com 10 ou 11 dígitos)
+        val phonePattern = "^\\+?[0-9]{10,13}$"
+        return phone.matches(phonePattern.toRegex())
     }
 }
 
-private fun isValidEmail(email: String): Boolean {
-    // Regex para validar e-mails simples
-    val emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
-    return email.matches(emailPattern.toRegex())
-}
 
-private fun isValidId(id: String): Boolean {
-    val idPattern = "^[0-9]+$"  // Regex para validar apenas números
-    return id.matches(idPattern.toRegex())
-}
 
-private fun isValidPhone(phone: String): Boolean {
-    // Regex para validar números de telefone (aqui estou considerando números com 10 ou 11 dígitos)
-    val phonePattern = "^\\+?[0-9]{10,13}$"
-    return phone.matches(phonePattern.toRegex())
-}
+
+
+/*val usuario = edtEmail.text.toString()
+    val senha = edtSenha.text.toString()
+
+    val tipo = intent.getStringExtra("tipo") ?: run {
+        Toast.makeText(this, "Tipo de usuário não definido.", Toast.LENGTH_SHORT).show()
+        return
+    }
+
+
+    // Para alunos: valida se o e-mail ou telefone é válido
+    if (isValidEmail(usuario) || isValidPhone(usuario)) {
+        // Aqui você deve comparar o e-mail com o que está salvo
+        if (usuario == "aluno@exemplo.com" && senha == senhaSalva) {
+            val intent = Intent(this, TelaPrincipalAluno::class.java)
+            startActivity(intent)
+            finish() // Finaliza a tela de login
+        } else {
+            Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
+        }
+    } else {
+        // Caso o e-mail/telefone seja inválido
+        Toast.makeText(this, "E-mail ou telefone inválido.", Toast.LENGTH_SHORT).show()
+    }
+    if (isValidId(usuario)){
+        if (usuario == "2413103" && senha == senhaSalva) {
+            // Verifique se o ID e a senha do funcionário estão corretos
+            val intent = Intent(this, TelaFuncionario::class.java)
+            startActivity(intent)
+            finish() // Finaliza a tela de login
+        } else {
+            Toast.makeText(this, "ID ou senha inválidos.", Toast.LENGTH_SHORT).show()
+        }
+    }
+}*/

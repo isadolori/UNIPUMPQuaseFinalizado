@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Firebase
 
 class TelaChat : AppCompatActivity() {
 
     lateinit var setaVoltar: ImageButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +18,7 @@ class TelaChat : AppCompatActivity() {
 
         setaVoltar = findViewById(R.id.SetaVoltar)
         configurarEventos()
+
 
     }
 

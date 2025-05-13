@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 
 class TelaConfiguracao_Funcionario : AppCompatActivity() {
@@ -109,7 +110,7 @@ class TelaConfiguracao_Funcionario : AppCompatActivity() {
             // Ação para deslogar
             Toast.makeText(context, "Deslogando...", Toast.LENGTH_SHORT).show()
 
-            // FirebaseAuth.getInstance().signOut()
+            FirebaseAuth.getInstance().signOut()
             val intent = Intent(context, TelaLogin::class.java)
             context.startActivity(intent)
             intent.putExtra("tipo", "funcionario") // Adicione isso
