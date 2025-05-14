@@ -27,6 +27,7 @@ class TelaEsqueceuSenha : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+
         // Configura os eventos
         configurarEventos()
     }
@@ -38,6 +39,47 @@ class TelaEsqueceuSenha : AppCompatActivity() {
     }
 
     private fun onEnviarClick() {
+        val emailOuTelefone = edtEmailOuTelefone.text.toString()
+
+        val tipoUsuario = intent.getStringExtra("tipo")
+
+
+        if (emailOuTelefone.isNotEmpty()) {
+
+            if (isValidEmail(emailOuTelefone)) {
+                // Se for um e-mail válido, redireciona para a próxima tela
+                val intent = Intent(this, TelaEsqueceuSenha2::class.java)
+                intent.putExtra("tipo",emailOuTelefone)
+                if (tipoUsuario == "aluno"){
+                    intent.putExtra("tipoUsuario", "aluno")
+                } else if (tipoUsuario == "funcionario"){
+                    intent.putExtra("tipoUsuario", "funcionario")
+                }
+                startActivity(intent)
+            }
+
+            else if (isValidPhone(emailOuTelefone)) {
+                // Se for um número de telefone válido, redireciona para a próxima tela
+                val intent = Intent(this, TelaEsqueceuSenha2::class.java)
+                intent.putExtra("tipo", emailOuTelefone)
+                if (tipoUsuario == "aluno"){
+                    intent.putExtra("tipoUsuario", "aluno")
+                } else if (tipoUsuario == "funcionario"){
+                    intent.putExtra("tipoUsuario", "funcionario")
+                }
+                startActivity(intent)
+            }
+            else {
+                // Se a entrada não for válida, mostra um erro
+                Toast.makeText(this, "Por favor, insira um e-mail ou número de telefone válido.", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            // Mostra uma mensagem caso o campo esteja vazio
+            Toast.makeText(this, "Por favor, insira um e-mail ou número de telefone.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    /*private fun onEnviarClick() {
         val emailOuTelefone = edtEmailOuTelefone.text.toString()
 
         val tipoUsuario = intent.getStringExtra("tipo")
@@ -85,7 +127,7 @@ class TelaEsqueceuSenha : AppCompatActivity() {
             // Mostra uma mensagem caso o campo esteja vazio
             Toast.makeText(this, "Por favor, insira um e-mail ou número de telefone.", Toast.LENGTH_SHORT).show()
         }
-    }
+    }*/
 
     // Função para validar o e-mail
     private fun isValidEmail(email: String): Boolean {

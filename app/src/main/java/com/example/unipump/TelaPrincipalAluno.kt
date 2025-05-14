@@ -3,12 +3,14 @@ package com.example.unipump
 import android.content.ClipData.Item
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -63,6 +65,8 @@ class TelaPrincipalAluno : AppCompatActivity() {
 
                 R.id.nav_chat -> {
                     val intent = Intent(this,TelaChat::class.java)
+                    Log.d("Navegacao", "Botão de chat clicado")
+                    Toast.makeText(this, "Indo para o chat...", Toast.LENGTH_SHORT).show()
                     startActivity(intent)
                     true
                 }

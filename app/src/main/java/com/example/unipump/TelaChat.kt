@@ -40,7 +40,7 @@ class TelaChat : AppCompatActivity() {
 
         // Definindo o clique do botão de voltar
         setaVoltar.setOnClickListener {
-            onBackPressed() // Isso chama o comportamento de voltar para a tela anterior
+            finish() // Isso chama o comportamento de voltar para a tela anterior
         }
 
         btnEnviarMsg.setOnClickListener {
