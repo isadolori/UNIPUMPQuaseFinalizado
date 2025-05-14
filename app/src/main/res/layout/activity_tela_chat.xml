@@ -41,22 +41,20 @@
     </LinearLayout>
 
     <!-- Área do conteúdo do chat -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/background_chat"
-        app:layout_constraintTop_toBottomOf="@+id/chat"
-        app:layout_constraintBottom_toTopOf="@+id/messageInputLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
 
-    <!-- Barra de digitação -->
+
+
+    <TextView
+        android:id="@+id/resposta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/messageInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chat"/>
+
     <LinearLayout
         android:id="@+id/messageInputLayout"
         android:layout_width="0dp"
@@ -72,14 +70,47 @@
             android:id="@+id/editTextMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="5"
             android:background="@drawable/rounded_edittext"
             android:backgroundTint="#202020"
             android:hint="Digite aqui..."
             android:padding="16dp"
+
             android:textColorHint="@color/white"
             android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnEnviarMsg"
+
+            android:background="@drawable/rounded_button"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    <!--&lt;!&ndash; Barra de digitação &ndash;&gt;
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_chat"
+            app:layout_constraintBottom_toTopOf="@+id/messageInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chat"
+            app:layout_constraintVertical_bias="0.0" />-->

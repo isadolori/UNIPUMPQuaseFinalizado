@@ -13,6 +13,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 
 
 class TelaLogin : AppCompatActivity() {
@@ -23,6 +26,7 @@ class TelaLogin : AppCompatActivity() {
     private lateinit var edtSenha: EditText
     private lateinit var btnEntrar: AppCompatButton
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
 
     // Variável simulando a senha salva
@@ -39,7 +43,10 @@ class TelaLogin : AppCompatActivity() {
         edtSenha = findViewById(R.id.etSenha)
         btnEntrar = findViewById(R.id.btnEntrar)
 
-        auth = FirebaseAuth.getInstance()
+
+        //var auth = Firebase.auth aqui eu j aforneco diretamente a instacia de FirebaseAuth
+        auth = FirebaseAuth.getInstance() // aqui eu estou pegando a varivel que declarei la em cima onde disse que ela com o tipo FIrebaseAuth e estou inicializando ela com uma insatncia do FirebaseAuth
+        db = Firebase.firestore
 
         var tipo = intent.getStringExtra("tipo")
         if (tipo == "aluno") {
@@ -85,44 +92,89 @@ class TelaLogin : AppCompatActivity() {
 
     // Função de login
     private fun onEntrarClick() {
-        val usuario = edtEmail.text.toString()
+        val usuario = edtEmail.text.toString().trim()
         val senha = edtSenha.text.toString()
         val tipo = intent.getStringExtra("tipo")
 
-        if (isValidEmail(usuario) || isValidPhone(usuario) || isValidId(usuario)) {
-
-            auth.signInWithEmailAndPassword(usuario, senha)
-                .addOnCompleteListener { autenticacao -> // resultado do login do usuário
-                    if (autenticacao.isSuccessful) {
-                        // Login bem-sucedido
-                        val intent = if (tipo == "aluno") {
-                            Intent(this, TelaPrincipalAluno::class.java)
-                        } else {
-                            Intent(this, TelaFuncionario::class.java)
-                        }
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        // Erro no login (erro genérico)
-                        Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                .addOnFailureListener { excecao ->
-                    val msgErro = when (excecao) {
-                        is FirebaseAuthWeakPasswordException ->
-                            "Digite uma senha com no mínimo 6 caracteres"
-                        is FirebaseAuthInvalidUserException ->
-                            "Usuário não encontrado ou desativado"
-                        else ->
-                            "Erro ao autenticar: ${excecao.localizedMessage}"
-                    }
-
-                    Toast.makeText(this, msgErro, Toast.LENGTH_LONG).show()
-                }
-
-        } else {
-            Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
+        if (usuario.isEmpty() || senha.isEmpty()) {
+            Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        if (tipo == "funcionario" && isValidId(usuario)) {
+            // Buscar e-mail associado ao ID no Firestore
+            db.collection("funcionarios").document(usuario).get()
+                .addOnSuccessListener { documento ->
+                    if (documento.exists()) {
+                        val email = documento.getString("email")
+                        if (!email.isNullOrEmpty()) {
+                            loginComEmail(email, senha, tipo)
+                        } else {
+                            Toast.makeText(this, "ID inválido: e-mail não encontrado", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Funcionário não encontrado", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erro ao buscar funcionário: ${it.localizedMessage}", Toast.LENGTH_SHORT).show()
+                }
+
+        } else if (tipo == "aluno" && (isValidEmail(usuario) || isValidPhone(usuario))) {
+            val campoBusca = if (isValidPhone(usuario)) "telefone" else "email"
+
+            db.collection("alunos")
+                .whereEqualTo(campoBusca, usuario)
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (!documents.isEmpty) {
+                        val documento = documents.documents[0]
+                        val email = documento.getString("email")
+                        if (!email.isNullOrEmpty()) {
+                            loginComEmail(email, senha, tipo)
+                        } else {
+                            Toast.makeText(this, "Email do aluno não encontrado", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Aluno não encontrado", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erro ao buscar aluno: ${it.localizedMessage}", Toast.LENGTH_SHORT).show()
+                }
+        }else {
+            Toast.makeText(this, "Formato de login inválido", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun loginComEmail(email: String, senha: String, tipo: String?) {
+        auth.signInWithEmailAndPassword(email, senha)
+            .addOnCompleteListener { autenticacao -> // resultado do login do usuário
+                if (autenticacao.isSuccessful) {
+                    val intent = if (tipo == "aluno") {
+                        Intent(this, TelaPrincipalAluno::class.java)
+                    } else {
+                        Intent(this, TelaFuncionario::class.java)
+                    }
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { excecao ->
+                val msgErro = when (excecao) {
+                    is FirebaseAuthWeakPasswordException ->
+                        "Digite uma senha com no mínimo 6 caracteres"
+                    is FirebaseAuthInvalidUserException ->
+                        "Usuário não encontrado ou desativado"
+                    is FirebaseAuthInvalidCredentialsException ->
+                        "Credenciais inválidas"
+                    else ->
+                        "Erro ao autenticar: ${excecao.localizedMessage}"
+                }
+                Toast.makeText(this, msgErro, Toast.LENGTH_LONG).show()
+            }
     }
 
 
