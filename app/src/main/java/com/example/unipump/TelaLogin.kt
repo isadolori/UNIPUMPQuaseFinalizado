@@ -150,17 +150,62 @@ class TelaLogin : AppCompatActivity() {
     private fun loginComEmail(email: String, senha: String, tipo: String?) {
         auth.signInWithEmailAndPassword(email, senha)
             .addOnCompleteListener { autenticacao -> // resultado do login do usuário
+
                 if (autenticacao.isSuccessful) {
-                    val intent = if (tipo == "aluno") {
-                        Intent(this, TelaPrincipalAluno::class.java)
-                    } else {
-                        Intent(this, TelaFuncionario::class.java)
+
+                    val uid = auth.currentUser?.uid
+
+                    if (uid != null && tipo != null) {
+                        val colecao = if (tipo == "aluno") "alunos" else "funcionarios"
+
+                        db.collection(colecao).whereEqualTo("email", email).get()
+                            .addOnSuccessListener { documents ->
+                                if (!documents.isEmpty) {
+                                    val dadosUsuario = documents.documents[0]
+
+                                    // Obtem SharedPreferences
+                                    val prefs = getSharedPreferences(
+                                        if (tipo == "aluno") "alunoPrefs" else "funcionarioPrefs",
+                                        MODE_PRIVATE
+                                    )
+                                    val editor = prefs.edit()
+
+                                    // Salva dados que você quiser
+                                    editor.putString("uid", uid)
+                                    editor.putString("nome", dadosUsuario.getString("nome"))
+                                    editor.putString("sobrenome", dadosUsuario.getString("sobrenome"))
+                                    editor.putString("idade", dadosUsuario.getString("idade"))
+                                    editor.putString("genero", dadosUsuario.getString("genero"))
+                                    editor.putString("endereco", dadosUsuario.getString("endereco"))
+                                    editor.putString("telefone", dadosUsuario.getString("telefone"))
+                                    editor.putString("email", email)
+                                    editor.putString("tipo", tipo)
+                                    editor.apply() // aplica as mudanças
+
+                                    // Vai para a tela principal
+                                    val intent = if (tipo == "aluno") {
+                                        Intent(this, TelaPrincipalAluno::class.java)
+                                    } else {
+                                        Intent(this, TelaFuncionario::class.java)
+                                    }
+                                    startActivity(intent)
+                                    finish()
+                                }
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(
+                                    this,
+                                    "Erro ao buscar dados do usuário",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                     }
-                    startActivity(intent)
-                    finish()
                 } else {
+
                     Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
+
                 }
+
             }
             .addOnFailureListener { excecao ->
                 val msgErro = when (excecao) {

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -28,6 +29,7 @@ class TelaFuncionario : AppCompatActivity() {
     private lateinit var usuario11 : LinearLayout
     private lateinit var usuario12 : LinearLayout
 
+    private lateinit var nomeUser: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +55,16 @@ class TelaFuncionario : AppCompatActivity() {
 
         btnNavegacao = findViewById(R.id.bottom_navigation)
         btnNotificacao = findViewById(R.id.btn_notificacao)
+
+
+        nomeUser = findViewById(R.id.nomeUser)
+
+        // Recuperar os dados do usuário
+        val prefs = getSharedPreferences("funcionarioPrefs", MODE_PRIVATE)
+        val nome = prefs.getString("nome", "Usuário")
+
+        nomeUser.text = "Bem Vindo, \n $nome!"
+
 
         configurarEventos()
     }

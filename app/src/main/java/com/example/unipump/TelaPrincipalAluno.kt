@@ -19,6 +19,7 @@ class TelaPrincipalAluno : AppCompatActivity() {
     private lateinit var visualizar: Button
     private lateinit var linkRelatorio: TextView
     private lateinit var notificacao: ImageButton
+    private lateinit var nomeUser: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +30,14 @@ class TelaPrincipalAluno : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
 
+
+        nomeUser = findViewById(R.id.nomeUser)
+
+        // Recuperar os dados do usuário
+        val prefs = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
+        val nome = prefs.getString("nome", "Usuário")
+
+        nomeUser.text = "Olá, $nome!"
 
         // 2. Visualizar
         visualizar = findViewById(R.id.btn_visualizar)
