@@ -28,7 +28,7 @@ class TelaChat : AppCompatActivity() {
 
         setaVoltar = findViewById(R.id.SetaVoltar)
         txtResposta = findViewById(R.id.resposta)
-        edtPergunta = findViewById(R.id.messageInputLayout)
+        edtPergunta = findViewById(R.id.editTextMessage)
         btnEnviarMsg = findViewById(R.id.btnEnviarMsg)
 
         configurarEventos()

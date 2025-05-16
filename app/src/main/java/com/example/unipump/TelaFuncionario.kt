@@ -2,9 +2,11 @@ package com.example.unipump
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -141,20 +143,25 @@ class TelaFuncionario : AppCompatActivity() {
         btnNavegacao.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_inicio -> {
-                    // O que acontece quando o item "Início" é clicado (permanece na tela atual)
+                    // Já está na tela inicial, não faz nada
                     true
                 }
 
                 R.id.nav_chat -> {
-                    // Abre a tela de chat
-                    val intent = Intent(this, TelaChat::class.java)
-                    startActivity(intent)
-                    true
+                    try {
+                        val intent = Intent(this@TelaFuncionario, TelaChat::class.java)
+                        startActivity(intent)
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                        true
+                    } catch (e: Exception) {
+                        Toast.makeText(this@TelaFuncionario, "Erro ao abrir o chat", Toast.LENGTH_SHORT).show()
+                        Log.e("NAVEGACAO", "Erro ao abrir TelaChat", e)
+                        false
+                    }
                 }
 
                 R.id.nav_config -> {
-                    // Abre a tela de configurações
-                    val intent = Intent(this, TelaConfiguracao_Funcionario::class.java)
+                    val intent = Intent(this@TelaFuncionario, TelaConfiguracao_Funcionario::class.java)
                     startActivity(intent)
                     true
                 }
