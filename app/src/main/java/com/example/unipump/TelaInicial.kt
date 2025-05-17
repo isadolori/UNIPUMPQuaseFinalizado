@@ -5,11 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class TelaInicial : AppCompatActivity() {
 
     private lateinit var btnAluno: Button
     private lateinit var btnFuncionario: Button
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +24,10 @@ class TelaInicial : AppCompatActivity() {
         btnAluno = findViewById(R.id.btnAluno)
         btnFuncionario = findViewById(R.id.btnFuncionario)
 
+        auth = Firebase.auth
+
+
+
         // Configura os eventos
         configurarEventos()
     }
@@ -27,6 +35,22 @@ class TelaInicial : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Log.d("CicloDeVida", "onStart chamado")
+
+        val usuarioAtual = auth.currentUser
+
+
+
+        if(usuarioAtual != null ){
+            val prefs = getSharedPreferences("usuarioPrefs", MODE_PRIVATE)
+            val tipo = prefs.getString("tipo", "")
+
+
+            val intent = Intent(this, TelaLogin::class.java)
+            intent.putExtra("tipo", tipo)
+            startActivity(intent)
+        }
+
+
     }
 
     override fun onResume() {
