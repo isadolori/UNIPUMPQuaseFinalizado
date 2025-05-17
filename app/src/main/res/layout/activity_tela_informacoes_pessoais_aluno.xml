@@ -60,7 +60,7 @@
                 android:padding="10dp">
 
                 <LinearLayout
-                    android:id="@+id/nome_usuario"
+                    android:id="@+id/content_nome_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -79,11 +79,11 @@
                         android:padding="10dp">
 
                         <EditText
-                            android:id="@+id/campo_nome_usuario"
+                            android:id="@+id/nome_usuario"
                             android:layout_width="290dp"
                             android:layout_height="wrap_content"
                             android:inputType="text"
-                            android:text="Bolofofo"
+                            android:text=""
                             android:textColor="@color/white" />
 
                         <ImageView
@@ -96,7 +96,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/endereco_usuario"
+                    android:id="@+id/content_endereco_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -115,12 +115,12 @@
                         android:padding="10dp">
 
                         <EditText
-                            android:id="@+id/campo_endereco_usuario"
+                            android:id="@+id/endereco_usuario"
                             android:layout_width="290dp"
                             android:layout_height="wrap_content"
                             android:autofillHints=""
                             android:inputType="text"
-                            android:text="AV. Washington Soarez"
+                            android:text=""
                             android:textColor="@color/white"/>
 
                         <ImageView
@@ -133,7 +133,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/genero_usuario"
+                    android:id="@+id/content_genero_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -152,12 +152,12 @@
                         android:padding="10dp">
 
                         <EditText
-                            android:id="@+id/genero"
+                            android:id="@+id/genero_usuario"
                             android:layout_width="290dp"
                             android:layout_height="wrap_content"
                             android:autofillHints=""
                             android:inputType="text"
-                            android:text="Masculino"
+                            android:text=""
                             android:textColor="@color/white"/>
 
                         <ImageView
@@ -170,7 +170,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/numero_contato_usuario"
+                    android:id="@+id/content_numero_contato_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -189,12 +189,12 @@
                         android:padding="10dp">
 
                         <EditText
-                            android:id="@+id/numero_contato"
+                            android:id="@+id/numero_contato_usuario"
                             android:layout_width="290dp"
                             android:layout_height="wrap_content"
                             android:autofillHints=""
                             android:inputType="text"
-                            android:text="+55 (85) 940028922"
+                            android:text=""
                             android:textColor="@color/white" />
 
                         <ImageView
@@ -208,7 +208,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/primeiro_nome"
+                    android:id="@+id/content_primeiro_nome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -232,7 +232,7 @@
                             android:layout_height="wrap_content"
                             android:autofillHints=""
                             android:inputType="text"
-                            android:text="Pedro"
+                            android:text=""
                             android:textColor="@color/gray_line"
                             android:textSize="20sp"/>
 
@@ -240,7 +240,7 @@
 
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/sobrenome_usuario_campo"
+                    android:id="@+id/content_sobrenome_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -264,7 +264,7 @@
                             android:layout_height="wrap_content"
                             android:autofillHints=""
                             android:inputType="text"
-                            android:text="Augusto"
+                            android:text=""
                             android:textColor="@color/gray_line"
                             android:textSize="20sp"/>
 
@@ -272,7 +272,7 @@
 
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/idade_usuario"
+                    android:id="@+id/content_idade_usuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -291,12 +291,12 @@
                         android:padding="10dp">
 
                         <TextView
-                            android:id="@+id/campo_idade_usuario"
+                            android:id="@+id/idade_usuario"
                             android:layout_width="290dp"
                             android:layout_height="wrap_content"
                             android:autofillHints=""
                             android:inputType="text"
-                            android:text="21"
+                            android:text=""
                             android:textColor="@color/gray_line"
                             android:textSize="20sp"/>
 
