@@ -38,8 +38,6 @@ class TelaInicial : AppCompatActivity() {
 
         val usuarioAtual = auth.currentUser
 
-
-
         if(usuarioAtual != null ){
             val prefs = getSharedPreferences("usuarioPrefs", MODE_PRIVATE)
             val tipo = prefs.getString("tipo", "")

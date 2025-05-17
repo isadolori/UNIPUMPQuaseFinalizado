@@ -114,7 +114,7 @@ class TelaConfig : AppCompatActivity() {
             // Ação para deslogar
             Toast.makeText(context, "Deslogando...", Toast.LENGTH_SHORT).show()
 
-            val prefs = getSharedPreferences("usuarioPrefs", MODE_PRIVATE)
+            val prefs = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
             prefs.edit().clear().apply()
 
             FirebaseAuth.getInstance().signOut()

@@ -2,6 +2,7 @@ package com.example.unipump
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -157,11 +158,11 @@ class TelaLogin : AppCompatActivity() {
 
                     if (uid != null && tipo != null) {
                         val colecao = if (tipo == "aluno") "alunos" else "funcionarios"
-
                         db.collection(colecao).whereEqualTo("email", email).get()
                             .addOnSuccessListener { documents ->
                                 if (!documents.isEmpty) {
                                     val dadosUsuario = documents.documents[0]
+                                    val alunoDocId = dadosUsuario.id   // <— pega o ID Firestore gerado
 
                                     // Obtem SharedPreferences
                                     val prefs = getSharedPreferences(
@@ -172,6 +173,9 @@ class TelaLogin : AppCompatActivity() {
 
                                     // Salva dados que você quiser
                                     editor.putString("uid", uid)
+                                    editor.putString("tipo", tipo)
+                                    editor.putString("alunoDocId", alunoDocId)    // <— NOVO
+                                    editor.putString("nome_usuario", dadosUsuario.getString("nome_usuario"))
                                     editor.putString("nome", dadosUsuario.getString("nome"))
                                     editor.putString("sobrenome", dadosUsuario.getString("sobrenome"))
                                     editor.putString("idade", dadosUsuario.getString("idade"))
@@ -179,7 +183,6 @@ class TelaLogin : AppCompatActivity() {
                                     editor.putString("endereco", dadosUsuario.getString("endereco"))
                                     editor.putString("telefone", dadosUsuario.getString("telefone"))
                                     editor.putString("email", email)
-                                    editor.putString("tipo", tipo)
                                     editor.apply() // aplica as mudanças
 
                                     // Vai para a tela principal
@@ -226,24 +229,27 @@ class TelaLogin : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        val tipo = intent.getStringExtra("tipo")
+        // Lê o tipo salvo no SharedPreferences (pode ser "aluno" ou "funcionario")
+        val prefs = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
+        val tipo = prefs.getString("tipo", null)
 
         val usuarioAtual = FirebaseAuth.getInstance().currentUser
+        // Debug
+        Log.d("LoginActivity", "Usuário atual: ${usuarioAtual?.email}")
 
-        if (usuarioAtual != null){
+        if (usuarioAtual != null && tipo != null) {
+            // Decide qual Activity lançar
+            val proximaTela = if (tipo == "aluno")
+                TelaPrincipalAluno::class.java
+            else
+                TelaFuncionario::class.java
 
-            val intent = if (tipo == "aluno") {
-                Intent(this, TelaPrincipalAluno::class.java)
-            } else {
-                Intent(this, TelaFuncionario::class.java)
-            }
-            startActivity(intent)
+            // Criamos e usamos um Intent novo
+            val novoIntent = Intent(this, proximaTela)
+            startActivity(novoIntent)
             finish()
-
         }
-
     }
-
 
 
 

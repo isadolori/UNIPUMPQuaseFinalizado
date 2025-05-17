@@ -13,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class TelaFuncionario : AppCompatActivity() {
 
-    /*private lateinit var gridLayout: GridLayout*/
+//    private lateinit var gridLayout: GridLayout
 
 
     private lateinit var btnNavegacao : BottomNavigationView
@@ -63,7 +63,7 @@ class TelaFuncionario : AppCompatActivity() {
 
         // Recuperar os dados do usuário
         val prefs = getSharedPreferences("funcionarioPrefs", MODE_PRIVATE)
-        val nome = prefs.getString("nome", "Usuário")
+        val nome = prefs.getString("nome_usuario", "Usuário")
 
         nomeUser.text = "Bem Vindo, \n $nome!"
 

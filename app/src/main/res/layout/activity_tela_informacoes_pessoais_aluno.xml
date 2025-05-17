@@ -310,6 +310,17 @@
         </LinearLayout>
     </ScrollView>
 
+<!--    <Button-->
+<!--        android:id="@+id/btn_salvar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Salvar"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginBottom="15dp"/>-->
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"

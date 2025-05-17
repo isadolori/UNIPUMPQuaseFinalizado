@@ -35,7 +35,7 @@ class TelaPrincipalAluno : AppCompatActivity() {
 
         // Recuperar os dados do usuário
         val prefs = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
-        val nome = prefs.getString("nome", "Usuário")
+        val nome = prefs.getString("nome_usuario", "Usuário")
 
         nomeUser.text = "Olá, $nome!"
 
