@@ -48,579 +48,585 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"/>
 
-            <!-- Primeiro exercício -->
-            <androidx.cardview.widget.CardView
+            <LinearLayout
+                android:id="@+id/container_exercicios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#1E1E1E"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp"
-                android:layout_marginBottom="16dp">
+                android:orientation="vertical"
+                android:paddingTop="16dp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+            <!-- Primeiro exercício -->
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardBackgroundColor="#1E1E1E"-->
+<!--                app:cardCornerRadius="16dp"-->
+<!--                app:cardElevation="6dp"-->
+<!--                android:layout_marginBottom="16dp">-->
 
-                    <!-- Cabeçalho do card -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Frame"
-                        android:textColor="#CCCCCC"
-                        android:textSize="12sp"/>
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="16dp">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+<!--                    &lt;!&ndash; Cabeçalho do card &ndash;&gt;-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Frame"-->
+<!--                        android:textColor="#CCCCCC"-->
+<!--                        android:textSize="12sp" />-->
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="2">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="horizontal">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Execução normal"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                android:layout_marginBottom="8dp"
-                                />
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_weight="2"-->
+<!--                            android:orientation="vertical">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Puxada alta aberta"
-                                android:textColor="@android:color/white"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:layout_marginBottom="8dp"/>
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginBottom="8dp"-->
+<!--                                android:text="Execução normal"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp" />-->
 
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/clock"
-                            android:scaleType="centerInside"
-                            android:contentDescription="Ícone de relógio"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"/>
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginBottom="8dp"-->
+<!--                                android:text="Puxada alta aberta"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="18sp"-->
+<!--                                android:textStyle="bold" />-->
 
 
-                    </LinearLayout>
+<!--                        </LinearLayout>-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:contentDescription="Ícone de relógio"-->
+<!--                            android:scaleType="centerInside"-->
+<!--                            android:src="@drawable/clock" />-->
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/white"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"/>
+<!--                    </LinearLayout>-->
 
 
-                    <!-- Séries -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+<!--                    <View-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="1dp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:background="@color/white" />-->
 
 
-                        <!-- Linha da série 1 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/fundo_preto_rounded"
-                            android:padding="12dp">
+<!--                    &lt;!&ndash; Séries &ndash;&gt;-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="1"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                android:layout_gravity="center"/>
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="10 repetições"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
+<!--                        &lt;!&ndash; Linha da série 1 &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="8dp"-->
+<!--                            android:background="@drawable/fundo_preto_rounded"-->
+<!--                            android:gravity="center"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            android:padding="12dp">-->
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="20kg"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="1"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp" />-->
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="30 segundos"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-                        </LinearLayout>
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="10 repetições"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp" />-->
 
-                        <!-- Linha da série 2 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:background="@drawable/fundo_preto_rounded"
-                            android:padding="12dp">
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="20kg"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp" />-->
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="2"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="30 segundos"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp" />-->
+<!--                        </LinearLayout>-->
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="12 repetições"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
+<!--                        &lt;!&ndash; Linha da série 2 &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/fundo_preto_rounded"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            android:padding="12dp">-->
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="10kg"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="2"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp" />-->
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="30 segundos"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="12 repetições"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp" />-->
 
-                        </LinearLayout>
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="10kg"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp" />-->
 
-                    </LinearLayout>
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="30 segundos"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp" />-->
 
-                </LinearLayout>
+<!--                        </LinearLayout>-->
 
-            </androidx.cardview.widget.CardView>
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
 
             <!-- Você pode duplicar os cards acima para "Remada baixa" e "Pulldown corda" -->
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#1E1E1E"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp"
-                android:layout_marginBottom="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <!-- Cabeçalho do card -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Frame"
-                        android:textColor="#CCCCCC"
-                        android:textSize="12sp"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="2">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Execução normal"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                android:layout_marginBottom="8dp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Remada baixa"
-                                android:textColor="@android:color/white"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:layout_marginBottom="8dp"/>
-
-
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/clock"
-                            android:scaleType="centerInside"
-                            android:contentDescription="Ícone de relógio"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"/>
-
-
-                    </LinearLayout>
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/white"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"/>
-
-
-                    <!-- Séries -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-
-                        <!-- Linha da série 1 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/fundo_preto_rounded"
-                            android:padding="12dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="1"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                android:layout_gravity="center"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="8 repetições"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="8kg"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="30 segundos"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-                        </LinearLayout>
-
-                        <!-- Linha da série 2 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:background="@drawable/fundo_preto_rounded"
-                            android:padding="12dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="2"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="12 repetições"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="10kg"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="30 segundos"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/fundo_preto_rounded"
-                            android:padding="12dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="3"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                android:layout_gravity="center"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="8 repetições"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="8kg"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="30 segundos"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#1E1E1E"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp"
-                android:layout_marginBottom="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <!-- Cabeçalho do card -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Frame"
-                        android:textColor="#CCCCCC"
-                        android:textSize="12sp"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="2">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Execução normal"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                android:layout_marginBottom="8dp"
-                                />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Pulldown corda"
-                                android:textColor="@android:color/white"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:layout_marginBottom="8dp"/>
-
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/clock"
-                            android:scaleType="centerInside"
-                            android:contentDescription="Ícone de relógio"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"/>
-
-
-                    </LinearLayout>
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/white"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"/>
-
-
-                    <!-- Séries -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-
-                        <!-- Linha da série 1 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/fundo_preto_rounded"
-                            android:padding="12dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="1"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                android:layout_gravity="center"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="12 repetições"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="8kg"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="30 segundos"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-                        </LinearLayout>
-
-                        <!-- Linha da série 2 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:background="@drawable/fundo_preto_rounded"
-                            android:padding="12dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="2"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="12 repetições"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="10kg"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="30 segundos"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardBackgroundColor="#1E1E1E"-->
+<!--                app:cardCornerRadius="16dp"-->
+<!--                app:cardElevation="6dp"-->
+<!--                android:layout_marginBottom="16dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    &lt;!&ndash; Cabeçalho do card &ndash;&gt;-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Frame"-->
+<!--                        android:textColor="#CCCCCC"-->
+<!--                        android:textSize="12sp"/>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="horizontal">-->
+
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="vertical"-->
+<!--                            android:layout_weight="2">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Execução normal"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"-->
+<!--                                android:layout_marginBottom="8dp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Remada baixa"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="18sp"-->
+<!--                                android:textStyle="bold"-->
+<!--                                android:layout_marginBottom="8dp"/>-->
+
+
+
+<!--                        </LinearLayout>-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:src="@drawable/clock"-->
+<!--                            android:scaleType="centerInside"-->
+<!--                            android:contentDescription="Ícone de relógio"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_weight="1"/>-->
+
+
+<!--                    </LinearLayout>-->
+
+
+<!--                    <View-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="1dp"-->
+<!--                        android:background="@color/white"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:layout_marginTop="10dp"/>-->
+
+
+<!--                    &lt;!&ndash; Séries &ndash;&gt;-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
+
+
+<!--                        &lt;!&ndash; Linha da série 1 &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            android:gravity="center"-->
+<!--                            android:layout_marginBottom="8dp"-->
+<!--                            android:background="@drawable/fundo_preto_rounded"-->
+<!--                            android:padding="12dp">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="1"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"-->
+<!--                                android:layout_gravity="center"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="8 repetições"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="8kg"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="30 segundos"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+<!--                        </LinearLayout>-->
+
+<!--                        &lt;!&ndash; Linha da série 2 &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:background="@drawable/fundo_preto_rounded"-->
+<!--                            android:padding="12dp">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="2"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="12 repetições"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="10kg"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="30 segundos"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                        </LinearLayout>-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            android:gravity="center"-->
+<!--                            android:layout_marginBottom="8dp"-->
+<!--                            android:layout_marginTop="8dp"-->
+<!--                            android:background="@drawable/fundo_preto_rounded"-->
+<!--                            android:padding="12dp">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="3"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"-->
+<!--                                android:layout_gravity="center"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="8 repetições"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="8kg"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="30 segundos"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+<!--                        </LinearLayout>-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardBackgroundColor="#1E1E1E"-->
+<!--                app:cardCornerRadius="16dp"-->
+<!--                app:cardElevation="6dp"-->
+<!--                android:layout_marginBottom="16dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    &lt;!&ndash; Cabeçalho do card &ndash;&gt;-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Frame"-->
+<!--                        android:textColor="#CCCCCC"-->
+<!--                        android:textSize="12sp"/>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="horizontal">-->
+
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="vertical"-->
+<!--                            android:layout_weight="2">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Execução normal"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"-->
+<!--                                android:layout_marginBottom="8dp"-->
+<!--                                />-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Pulldown corda"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="18sp"-->
+<!--                                android:textStyle="bold"-->
+<!--                                android:layout_marginBottom="8dp"/>-->
+
+
+<!--                        </LinearLayout>-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:src="@drawable/clock"-->
+<!--                            android:scaleType="centerInside"-->
+<!--                            android:contentDescription="Ícone de relógio"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_weight="1"/>-->
+
+
+<!--                    </LinearLayout>-->
+
+
+<!--                    <View-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="1dp"-->
+<!--                        android:background="@color/white"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:layout_marginTop="10dp"/>-->
+
+
+<!--                    &lt;!&ndash; Séries &ndash;&gt;-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
+
+
+<!--                        &lt;!&ndash; Linha da série 1 &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            android:gravity="center"-->
+<!--                            android:layout_marginBottom="8dp"-->
+<!--                            android:background="@drawable/fundo_preto_rounded"-->
+<!--                            android:padding="12dp">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="1"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"-->
+<!--                                android:layout_gravity="center"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="12 repetições"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="8kg"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="30 segundos"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+<!--                        </LinearLayout>-->
+
+<!--                        &lt;!&ndash; Linha da série 2 &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:background="@drawable/fundo_preto_rounded"-->
+<!--                            android:padding="12dp">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="2"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="12 repetições"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:text="10kg"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="30 segundos"-->
+<!--                                android:textColor="@android:color/white"-->
+<!--                                android:textSize="14sp"/>-->
+
+<!--                        </LinearLayout>-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
 
 
             <!-- Botão iniciar -->

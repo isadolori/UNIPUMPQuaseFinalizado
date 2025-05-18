@@ -28,7 +28,9 @@ class TelaInformacoesPessoaisAluno : AppCompatActivity() {
     private lateinit var bottomNav:      BottomNavigationView
 
     // Firestore
-    private val db by lazy { FirebaseFirestore.getInstance() }
+    private val db by lazy {
+        FirebaseFirestore.getInstance()
+    }
 
     // SharedPreferences onde guardamos o alunoDocId no login
     private val prefs by lazy {
