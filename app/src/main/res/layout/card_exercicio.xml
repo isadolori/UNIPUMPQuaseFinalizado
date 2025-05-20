@@ -7,6 +7,8 @@
     app:cardBackgroundColor="#1E1E1E"
     app:cardCornerRadius="16dp"
     app:cardElevation="6dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
     android:layout_marginBottom="16dp">
 
     <LinearLayout
@@ -15,14 +17,14 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Cabeçalho -->
+        <!-- Cabeçalho do card -->
         <TextView
-            android:id="@+id/tv_frame_label"
+            android:id="@+id/tvFrame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Frame"
             android:textColor="#CCCCCC"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,6 +33,7 @@
             android:layout_marginTop="4dp"
             android:gravity="center_vertical">
 
+            <!-- Execução + nome -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -38,44 +41,49 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_execucao"
+                    android:id="@+id/tvExecucao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Execução normal"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_nome_exercicio"
+                    android:id="@+id/tvNome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome exercício"
+                    android:text="Puxada alta aberta"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"/>
             </LinearLayout>
 
+            <!-- Ícone de relógio -->
             <ImageView
-                android:id="@+id/iv_relogio"
+                android:id="@+id/ivClock"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/clock"
-                android:contentDescription="Ícone de relógio"/>
+                android:contentDescription="Ícone de relógio"
+                android:scaleType="centerInside"
+                android:layout_weight="1"/>
         </LinearLayout>
 
+        <!-- Separador -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginVertical="8dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/white" />
 
-        <!-- Aqui entra dinamicamente as séries -->
-        <LinearLayout
-            android:id="@+id/container_series"
+        <!-- Lista de séries dentro do card -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSeries"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:nestedScrollingEnabled="false"/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
