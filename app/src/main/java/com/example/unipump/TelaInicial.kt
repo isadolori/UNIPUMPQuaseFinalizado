@@ -26,8 +26,6 @@ class TelaInicial : AppCompatActivity() {
 
         auth = Firebase.auth
 
-
-
         // Configura os eventos
         configurarEventos()
     }
@@ -36,19 +34,8 @@ class TelaInicial : AppCompatActivity() {
         super.onStart()
         Log.d("CicloDeVida", "onStart chamado")
 
-        val usuarioAtual = auth.currentUser
-
-        if(usuarioAtual != null ){
-            val prefs = getSharedPreferences("usuarioPrefs", MODE_PRIVATE)
-            val tipo = prefs.getString("tipo", "")
-
-
-            val intent = Intent(this, TelaLogin::class.java)
-            intent.putExtra("tipo", tipo)
-            startActivity(intent)
-        }
-
-
+        // Verifica se há usuário logado e redireciona diretamente
+        verificarUsuarioLogado()
     }
 
     override fun onResume() {
@@ -71,12 +58,56 @@ class TelaInicial : AppCompatActivity() {
         Log.d("CicloDeVida", "onDestroy chamado")
     }
 
+    private fun verificarUsuarioLogado() {
+        val usuarioAtual = auth.currentUser
+
+        if (usuarioAtual != null) {
+            // Verifica nas duas SharedPreferences possíveis
+            val prefsAluno = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
+            val prefsFuncionario = getSharedPreferences("funcionarioPrefs", MODE_PRIVATE)
+
+            val tipoAluno = prefsAluno.getString("tipo", null)
+            val tipoFuncionario = prefsFuncionario.getString("tipo", null)
+
+            when {
+                tipoAluno == "aluno" -> {
+                    Log.d("AutoLogin", "Redirecionando para TelaPrincipalAluno")
+                    val intent = Intent(this, TelaPrincipalAluno::class.java)
+                    startActivity(intent)
+                    finish() // Encerra esta activity
+                }
+                tipoFuncionario == "funcionario" -> {
+                    Log.d("AutoLogin", "Redirecionando para TelaFuncionario")
+                    val intent = Intent(this, TelaFuncionario::class.java)
+                    startActivity(intent)
+                    finish() // Encerra esta activity
+                }
+                else -> {
+                    // Usuário logado mas sem dados salvos - força logout
+                    Log.d("AutoLogin", "Usuário sem dados salvos - fazendo logout")
+                    auth.signOut()
+                    limparPreferencias()
+                }
+            }
+        }
+        // Se não há usuário logado, permanece na tela inicial normalmente
+    }
+
+    private fun limparPreferencias() {
+        val prefsAluno = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
+        val prefsFuncionario = getSharedPreferences("funcionarioPrefs", MODE_PRIVATE)
+
+        prefsAluno.edit().clear().apply()
+        prefsFuncionario.edit().clear().apply()
+    }
+
     private fun configurarEventos() {
         btnAluno.setOnClickListener {
             val intent = Intent(this, TelaLogin::class.java)
             intent.putExtra("tipo", "aluno")
             startActivity(intent)
         }
+
         btnFuncionario.setOnClickListener {
             val intent = Intent(this, TelaLogin::class.java)
             intent.putExtra("tipo", "funcionario")

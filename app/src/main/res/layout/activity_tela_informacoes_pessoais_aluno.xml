@@ -22,30 +22,32 @@
             android:orientation="vertical"
             android:paddingBottom="16dp">
 
-            <ImageView
-                android:id="@+id/btn_back"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/back_button"
-                android:scaleType="centerInside"
-                android:layout_marginTop="50dp"
-                android:layout_marginStart="20dp"/>
+            <LinearLayout
+            android:layout_marginTop="15dp"
+            android:id="@+id/text_info_pessoais_aluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-
+            <ImageButton
+                android:id="@+id/SetaVoltarTelaGerenciamentoAluno"
+                android:layout_width="48sp"
+                android:layout_height="48sp"
+                android:contentDescription="@string/seta_voltar"
+                android:src="@drawable/ic_arrow_back"
+                android:backgroundTint="@color/black"/>
 
             <TextView
-                android:id="@+id/text_info_pessoais_aluno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Informações pessoais"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="100dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp" />
+                android:layout_marginTop="10dp"
+                />
+
+        </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/conteiner_info_aluno"

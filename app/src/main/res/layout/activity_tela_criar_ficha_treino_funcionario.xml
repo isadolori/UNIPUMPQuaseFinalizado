@@ -8,7 +8,6 @@
     tools:context=".TelaCriarFichaTreino_Funcionario"
     android:background="@color/black">
 
-
     <!-- ScrollView para tornar o conteúdo rolável -->
     <ScrollView
         android:layout_width="match_parent"
@@ -23,8 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
 
             <!-- LinearLayout para cabeçalho -->
             <LinearLayout
@@ -75,14 +72,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="(nome da ficha)   "
-                        android:textColor="@color/white"
-
-                        />
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,8 +89,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="20dp"
                 android:background="@drawable/conteiner_funcionario"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -107,8 +99,7 @@
                     android:textStyle="bold"
                     android:textSize="24sp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    />
+                    android:layout_marginTop="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -117,8 +108,7 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:layout_marginTop="13dp"
-                    android:layout_marginStart="32dp"
-                    />
+                    android:layout_marginStart="32dp" />
 
                 <Spinner
                     android:id="@+id/spinnerGrupoMuscular"
@@ -127,221 +117,36 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/rounded_edittext"
-                    />
+                    android:background="@drawable/rounded_edittext" />
 
+                <!-- TextView para mostrar loading ou mensagens -->
+                <TextView
+                    android:id="@+id/tvStatusExercicios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="Selecione um grupo muscular"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:visibility="visible" />
 
-                <LinearLayout
+                <!-- RecyclerView para os exercícios -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewExercicios"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="30dp"
-                    android:gravity="center"
-                    android:padding="8dp">
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/icon_rectangle" />
-
-                    <TextView
-                        android:id="@+id/nomeExercicio1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Puxada alta Aberta"
-                        android:textColor="@color/white" />
-
-                    <ImageButton
-                        android:id="@+id/btnAddExercio1_telaCriar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#202020"
-                        android:contentDescription="Botão de adicionar exercicio"
-                        android:src="@drawable/plus_circle"
-                        />
-
-                </LinearLayout>
-
-                <!-- Linha separadora -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@android:color/darker_gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="1dp"
-                    android:gravity="center"
-                    android:padding="8dp">
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/icon_rectangle" />
-
-                    <TextView
-                        android:id="@+id/nomeExercicio2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="louca louco"
-                        android:textColor="@color/white" />
-
-                    <ImageButton
-                        android:id="@+id/btnAddExercio2_telaCriar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#202020"
-                        android:contentDescription="Botão de adicionar exercicio"
-                        android:src="@drawable/plus_circle" />
-                </LinearLayout>
-                <!-- Linha separadora -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@android:color/darker_gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="1dp"
-                    android:gravity="center"
-                    android:padding="8dp">
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/icon_rectangle" />
-
-                    <TextView
-                        android:id="@+id/nomeExercicio3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="treino fofo"
-                        android:textColor="@color/white" />
-
-                    <ImageButton
-                        android:id="@+id/btnAddExercio3_telaCriar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#202020"
-                        android:contentDescription="Botão de adicionar exercicio"
-                        android:src="@drawable/plus_circle" />
-                </LinearLayout>
-                <!-- Linha separadora -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@android:color/darker_gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="1dp"
-                    android:gravity="center"
-                    android:padding="8dp">
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/icon_rectangle" />
-
-                    <TextView
-                        android:id="@+id/nomeExercicio4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="treino fofo"
-                        android:textColor="@color/white" />
-
-                    <ImageButton
-                        android:id="@+id/btnAddExercio4_telaCriar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#202020"
-                        android:contentDescription="Botão de adicionar exercicio"
-                        android:src="@drawable/plus_circle" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@android:color/darker_gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="1dp"
-                    android:gravity="center"
-                    android:padding="8dp">
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/icon_rectangle" />
-
-                    <TextView
-                        android:id="@+id/nomeExercicio5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="treino fofo"
-                        android:textColor="@color/white" />
-
-                    <ImageButton
-                        android:id="@+id/btnAddExercio5_telaCriar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#202020"
-                        android:contentDescription="Botão de adicionar exercicio"
-                        android:src="@drawable/plus_circle" />
-                </LinearLayout>
-
-
-
-                <!-- <androidx.appcompat.widget.AppCompatButton
-                     android:id="@+id/AdicionarExercicio"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_margin="40dp"
-                     android:background="@drawable/rounded_button"
-                     android:backgroundTint="@color/blue"
-                     android:text="+ Adicionar Exercicio"
-                     android:textColor="@color/white"
-                     android:textSize="20sp"
-                     android:textAllCaps="false"
-                     />-->
-
-
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:nestedScrollingEnabled="false"
+                     />
+                <!--android:visibility="gone"-->
             </LinearLayout>
-
 
         </LinearLayout>
 
     </ScrollView>
-
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -355,8 +160,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_nav_funcionario"
-
-        />
+        app:menu="@menu/menu_bottom_nav_funcionario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

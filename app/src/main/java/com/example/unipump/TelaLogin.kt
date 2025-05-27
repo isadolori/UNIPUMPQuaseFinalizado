@@ -64,6 +64,9 @@ class TelaLogin : AppCompatActivity() {
         configurarEventos()
     }
 
+    // REMOVIDA a verificação automática do onStart()
+    // A TelaLogin agora só faz login manual, não automático
+
     // NOVA FUNÇÃO: Configurar o toggle de visibilidade da senha
     private fun configurarToggleSenha() {
         edtSenha.setOnTouchListener { _, event ->
@@ -112,6 +115,7 @@ class TelaLogin : AppCompatActivity() {
         btnVoltar.setOnClickListener {
             val intent = Intent(this, TelaInicial::class.java)
             startActivity(intent)
+            finish() // Adicionar finish() para não acumular activities
         }
 
         textEsqueceuSenha.setOnClickListener {
@@ -189,7 +193,7 @@ class TelaLogin : AppCompatActivity() {
 
     private fun loginComEmail(email: String, senha: String, tipo: String?) {
         auth.signInWithEmailAndPassword(email, senha)
-            .addOnCompleteListener { autenticacao -> // resultado do login do usuário
+            .addOnCompleteListener { autenticacao ->
 
                 if (autenticacao.isSuccessful) {
 
@@ -201,13 +205,11 @@ class TelaLogin : AppCompatActivity() {
                             .addOnSuccessListener { documents ->
                                 if (!documents.isEmpty) {
                                     val dadosUsuario = documents.documents[0]
-                                    val alunoDocId = dadosUsuario.id   // pega o ID Firestore gerado
+                                    val alunoDocId = dadosUsuario.id
 
-                                    // Obtem SharedPreferences
-                                    val prefs = getSharedPreferences(
-                                        if (tipo == "aluno") "alunoPrefs" else "funcionarioPrefs",
-                                        MODE_PRIVATE
-                                    )
+                                    // Usar apenas uma SharedPreference baseada no tipo
+                                    val prefsName = if (tipo == "aluno") "alunoPrefs" else "funcionarioPrefs"
+                                    val prefs = getSharedPreferences(prefsName, MODE_PRIVATE)
                                     val editor = prefs.edit()
 
                                     // Salva dados do usuário
@@ -222,7 +224,7 @@ class TelaLogin : AppCompatActivity() {
                                     editor.putString("endereco", dadosUsuario.getString("endereco"))
                                     editor.putString("telefone", dadosUsuario.getString("telefone"))
                                     editor.putString("email", email)
-                                    editor.apply() // aplica as mudanças
+                                    editor.apply()
 
                                     // Vai para a tela principal
                                     val intent = if (tipo == "aluno") {
@@ -231,7 +233,7 @@ class TelaLogin : AppCompatActivity() {
                                         Intent(this, TelaFuncionario::class.java)
                                     }
                                     startActivity(intent)
-                                    finish()
+                                    finish() // Encerra a tela de login
                                 }
                             }
                             .addOnFailureListener {
@@ -261,44 +263,17 @@ class TelaLogin : AppCompatActivity() {
             }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        // Lê o tipo salvo no SharedPreferences (pode ser "aluno" ou "funcionario")
-        val prefs = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
-        val tipo = prefs.getString("tipo", null)
-
-        val usuarioAtual = FirebaseAuth.getInstance().currentUser
-        // Debug
-        Log.d("LoginActivity", "Usuário atual: ${usuarioAtual?.email}")
-
-        if (usuarioAtual != null && tipo != null) {
-            // Decide qual Activity lançar
-            val proximaTela = if (tipo == "aluno")
-                TelaPrincipalAluno::class.java
-            else
-                TelaFuncionario::class.java
-
-            // Criamos e usamos um Intent novo
-            val novoIntent = Intent(this, proximaTela)
-            startActivity(novoIntent)
-            finish()
-        }
-    }
-
     private fun isValidEmail(email: String): Boolean {
-        // Regex para validar e-mails simples
         val emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
         return email.matches(emailPattern.toRegex())
     }
 
     private fun isValidId(id: String): Boolean {
-        val idPattern = "^[0-9]+$"  // Regex para validar apenas números
+        val idPattern = "^[0-9]+$"
         return id.matches(idPattern.toRegex())
     }
 
     private fun isValidPhone(phone: String): Boolean {
-        // Regex para validar números de telefone (números com 10 ou 11 dígitos)
         val phonePattern = "^\\+?[0-9]{10,13}$"
         return phone.matches(phonePattern.toRegex())
     }

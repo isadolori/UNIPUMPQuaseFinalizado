@@ -77,12 +77,12 @@
             <ImageButton
                 android:id="@+id/btnAddExercicio"
                 android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_height="34dp"
                 android:background="@drawable/circular_background"
                 android:backgroundTint="@color/gray"
-                android:src="@drawable/plus_circle"
                 android:contentDescription="Adicionar Exercício"
-                android:scaleType="center" />
+                android:scaleType="center"
+                android:src="@drawable/plus_circle" />
 
 
 
