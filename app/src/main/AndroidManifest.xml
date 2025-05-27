@@ -25,16 +25,16 @@
             android:name=".TelaRelatorioSemanal"
             android:exported="false" />
         <activity
-            android:name=".TelaExercicioFinalizado"
+            android:name=".TelaExercicioFinalizadoAluno"
             android:exported="false" />
         <activity
             android:name=".TelaExercicio2"
             android:exported="false" />
         <activity
-            android:name=".TelaExercicio1"
+            android:name=".TelaDetalheExercicio"
             android:exported="false" />
         <activity
-            android:name=".TelaFichaTreino"
+            android:name=".TelaFichaTreinoAluno"
             android:exported="false" />
         <activity
             android:name=".TelaCriarFichaTreino2_Funcionario"

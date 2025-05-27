@@ -3,10 +3,7 @@ package com.example.unipump
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class TelaExercicio2 : AppCompatActivity() {
 
@@ -23,7 +20,7 @@ class TelaExercicio2 : AppCompatActivity() {
 
     private fun onClickFinalizar(){
         voltar.setOnClickListener {
-            val intent = Intent(this, TelaExercicioFinalizado:: class.java)
+            val intent = Intent(this, TelaExercicioFinalizadoAluno:: class.java)
             startActivity(intent)
         }
     }

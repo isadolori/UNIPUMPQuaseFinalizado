@@ -1,5 +1,6 @@
 package com.example.unipump
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -31,7 +32,7 @@ class TelaConfig : AppCompatActivity() {
 
 
         personalInfo.setOnClickListener {
-            // abrir tela de informaões pessoais
+            // abrir tela de informações pessoais
             val intent = Intent(this, TelaInformacoesPessoaisAluno::class.java)
             startActivity(intent)
         }
@@ -110,19 +111,28 @@ class TelaConfig : AppCompatActivity() {
         }
 
         btnConfirmar.setOnClickListener {
+            // 1. Fecha o diálogo
             dialog.dismiss()
-            // Ação para deslogar
-            Toast.makeText(context, "Deslogando...", Toast.LENGTH_SHORT).show()
 
-            val prefs = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
-            prefs.edit().clear().apply()
+            // 2. Limpa SharedPreferences
+            getSharedPreferences("alunoPrefs", MODE_PRIVATE)
+                .edit()
+                .clear()
+                .apply()
 
+            // 3. Desloga do Firebase
             FirebaseAuth.getInstance().signOut()
-            val intent = Intent(context, TelaLogin::class.java)
-            context.startActivity(intent)
-            intent.putExtra("tipo", "aluno") // Adicione isso
+
+            // 4. Limpa toda a pilha e abre TelaLogin
+            val intent = Intent(this, TelaLogin::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                putExtra("tipo", "aluno")
+            }
             startActivity(intent)
+            // 5. Finaliza esta Activity e todas as anteriores
+            finishAffinity()
         }
+
     }
 
 }

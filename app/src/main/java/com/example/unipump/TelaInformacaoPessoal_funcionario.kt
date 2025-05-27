@@ -38,7 +38,6 @@ class TelaInformacaoPessoal_funcionario : AppCompatActivity() {
         btnNavegacao = findViewById(R.id.bottom_navigation)
 
 
-
         campoNomeUsuario = findViewById(R.id.campo_nome_usuario)
         campoEnderecoUsuario  = findViewById(R.id.campo_endereco_usuario)
         generoUsuario = findViewById(R.id.genero)
@@ -64,8 +63,6 @@ class TelaInformacaoPessoal_funcionario : AppCompatActivity() {
         primeiro_nome_usuario.text = nome
         sobrenome_usuario.text = sobrenomeUsuario
         campo_idade_usuario.text = idadeUsuario
-
-
 
 
         configurarEventos()

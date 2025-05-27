@@ -148,7 +148,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="#202020"
-                            android:contentDescription="Botão de adicionar exercicio"
+                            android:contentDescription="Botão de adicionar exercicioAluno"
                             android:src="@drawable/plus_circle"
                             />
 

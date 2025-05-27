@@ -208,7 +208,6 @@ class TelaLogin : AppCompatActivity() {
                     Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
 
                 }
-
             }
             .addOnFailureListener { excecao ->
                 val msgErro = when (excecao) {
@@ -227,15 +226,16 @@ class TelaLogin : AppCompatActivity() {
 
 
     override fun onStart() {
-        super.onStart()
 
+        super.onStart()
+        Log.d("TelaLogin", "onStart → entrou")
         // Lê o tipo salvo no SharedPreferences (pode ser "aluno" ou "funcionario")
         val prefs = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
         val tipo = prefs.getString("tipo", null)
 
         val usuarioAtual = FirebaseAuth.getInstance().currentUser
         // Debug
-        Log.d("LoginActivity", "Usuário atual: ${usuarioAtual?.email}")
+        Log.d("LoginActivity", "Usuário atual: ${usuarioAtual?.uid}")
 
         if (usuarioAtual != null && tipo != null) {
             // Decide qual Activity lançar
@@ -250,7 +250,6 @@ class TelaLogin : AppCompatActivity() {
             finish()
         }
     }
-
 
 
 

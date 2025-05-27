@@ -159,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#202020"
-                        android:contentDescription="Botão de adicionar exercicio"
+                        android:contentDescription="Botão de adicionar exercicioAluno"
                         android:src="@drawable/plus_circle"
                         />
 
@@ -200,7 +200,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#202020"
-                        android:contentDescription="Botão de adicionar exercicio"
+                        android:contentDescription="Botão de adicionar exercicioAluno"
                         android:src="@drawable/plus_circle" />
                 </LinearLayout>
                 <!-- Linha separadora -->
@@ -238,7 +238,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#202020"
-                        android:contentDescription="Botão de adicionar exercicio"
+                        android:contentDescription="Botão de adicionar exercicioAluno"
                         android:src="@drawable/plus_circle" />
                 </LinearLayout>
                 <!-- Linha separadora -->
@@ -276,7 +276,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#202020"
-                        android:contentDescription="Botão de adicionar exercicio"
+                        android:contentDescription="Botão de adicionar exercicioAluno"
                         android:src="@drawable/plus_circle" />
                 </LinearLayout>
 
@@ -314,7 +314,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#202020"
-                        android:contentDescription="Botão de adicionar exercicio"
+                        android:contentDescription="Botão de adicionar exercicioAluno"
                         android:src="@drawable/plus_circle" />
                 </LinearLayout>
 
@@ -327,7 +327,7 @@
                      android:layout_margin="40dp"
                      android:background="@drawable/rounded_button"
                      android:backgroundTint="@color/blue"
-                     android:text="+ Adicionar Exercicio"
+                     android:text="+ Adicionar ExercicioAluno"
                      android:textColor="@color/white"
                      android:textSize="20sp"
                      android:textAllCaps="false"
