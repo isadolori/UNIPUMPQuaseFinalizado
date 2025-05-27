@@ -25,7 +25,7 @@ class TelaEsqueceuSenha : AppCompatActivity() {
         btnEnviar = findViewById(R.id.btnEnviar)
         edtEmailOuTelefone = findViewById(R.id.edtEmailOuTelefone_recuperar_senha_1)
 
-        auth = FirebaseAuth.getInstance()
+        /*auth = FirebaseAuth.getInstance()*/
 
 
         // Configura os eventos

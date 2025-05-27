@@ -92,7 +92,7 @@
                             android:autofillHints=""
                             android:inputType="text"
                             android:gravity="center_vertical"
-                            android:text="Pedro"
+                            android:text=""
                             android:textColor="@color/gray_line"
                             android:textSize="20sp"/>
 
@@ -125,7 +125,7 @@
                             android:autofillHints=""
                             android:inputType="text"
                             android:gravity="center_vertical"
-                            android:text="Augusto"
+                            android:text=""
                             android:textColor="@color/gray_line"
                             android:textSize="20sp"/>
 
@@ -156,7 +156,7 @@
                             android:layout_width="290dp"
                             android:layout_height="45dp"
                             android:gravity="center_vertical"
-                            android:text="21"
+                            android:text=""
                             android:textColor="@color/gray_line"
                             android:textSize="20sp"/>
 
@@ -192,7 +192,7 @@
                             android:layout_width="290dp"
                             android:layout_height="45dp"
                             android:gravity="center_vertical"
-                            android:text="Masculino"
+                            android:text=""
                             android:textColor="@color/gray_line"
                             android:textSize="20sp"/>
 
@@ -224,7 +224,7 @@
                             android:layout_height="45dp"
                             android:autofillHints=""
                             android:inputType="text"
-                            android:text="1,80 metros"
+                            android:text=""
                             android:textColor="@color/white"
                             android:layout_weight="3"/>
 
@@ -259,12 +259,12 @@
                         android:padding="10dp">
 
                         <EditText
-                            android:id="@+id/numero_contato"
+                            android:id="@+id/peso_do_aluno"
                             android:layout_width="290dp"
                             android:layout_height="45dp"
                             android:autofillHints=""
                             android:inputType="text"
-                            android:text="60 Kg"
+                            android:text=""
                             android:textColor="@color/white"
                             android:layout_weight="3"/>
 
@@ -306,7 +306,7 @@
                             android:layout_weight="3"
                             android:autofillHints=""
                             android:inputType="text"
-                            android:text="Problemas do Ombro"
+                            android:text=""
                             android:textColor="@color/white" />
 
                         <ImageView

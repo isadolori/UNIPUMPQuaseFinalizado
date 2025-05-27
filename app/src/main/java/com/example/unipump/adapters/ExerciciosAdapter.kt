@@ -14,8 +14,7 @@ import com.example.unipump.models.Exercicio
 import com.example.unipump.models.Serie
 
 class ExerciciosAdapter(
-    private val listaExercicios: List<Exercicio>
-) : RecyclerView.Adapter<ExerciciosAdapter.ExercicioVH>() {
+    private val listaExercicios: List<Exercicio>) : RecyclerView.Adapter<ExerciciosAdapter.ExercicioVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExercicioVH {
         val view = LayoutInflater.from(parent.context)

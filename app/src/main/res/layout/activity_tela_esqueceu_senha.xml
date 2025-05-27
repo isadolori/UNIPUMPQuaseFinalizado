@@ -61,7 +61,7 @@
         <!-- Campo email -->
         <EditText
             android:id="@+id/edtEmailOuTelefone_recuperar_senha_1"
-            android:hint="@string/email_telefone"
+            android:hint="Email"
             style="@style/EditText"
             tools:ignore="TextFields"
             android:drawableRight="@drawable/ic_email"

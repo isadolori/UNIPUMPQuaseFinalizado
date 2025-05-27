@@ -40,73 +40,22 @@
             android:textSize="20sp" />
     </LinearLayout>
 
-    <!-- Área de conversa com background e ScrollView -->
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
+    <!-- RECYCLERVIEW PARA AS MENSAGENS -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewChat"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:fillViewport="true"
         android:background="@drawable/background_chat"
         android:padding="16dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toTopOf="@id/messageInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chat">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Mensagem do robô -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="vertical"
-                android:background="@drawable/bubble_robot"
-                android:padding="12dp">
-
-                <!-- Área onde as mensagens dinâmicas serão exibidas -->
-                <TextView
-                    android:id="@+id/resposta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="8dp"
-                    android:textSize="16sp" />
-
-                <!--<TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Olá! Como posso te ajudar hoje?"
-                    android:textColor="@color/white" />-->
-            </LinearLayout>
-
-            <!--&lt;!&ndash; Sua mensagem &ndash;&gt;
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_gravity="end"
-                android:orientation="vertical"
-                android:background="@drawable/bubble_user"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Preciso de ajuda com meu login"
-                    android:textColor="@color/white" />
-            </LinearLayout>
--->
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        app:layout_constraintTop_toBottomOf="@id/chat" />
 
     <!-- Área de digitação -->
     <LinearLayout

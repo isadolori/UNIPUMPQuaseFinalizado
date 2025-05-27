@@ -113,6 +113,9 @@ class TelaConfiguracao_Funcionario : AppCompatActivity() {
             val prefs = getSharedPreferences("funcionarioPrefs", MODE_PRIVATE)
             prefs.edit().clear().apply()
 
+            val prefs1 = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
+            prefs1.edit().clear().apply()
+
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(context, TelaLogin::class.java)
             context.startActivity(intent)

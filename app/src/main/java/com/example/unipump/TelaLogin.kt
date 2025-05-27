@@ -2,13 +2,16 @@ package com.example.unipump
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
+import android.view.MotionEvent
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -17,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
-
 
 class TelaLogin : AppCompatActivity() {
 
@@ -29,9 +31,8 @@ class TelaLogin : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-
-    // Variável simulando a senha salva
-    /*private var senhaSalva: String = "12345" // Senha inicial*/
+    // NOVA VARIÁVEL para controlar o estado da visibilidade da senha
+    private var senhaVisivel: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,30 +45,68 @@ class TelaLogin : AppCompatActivity() {
         edtSenha = findViewById(R.id.etSenha)
         btnEntrar = findViewById(R.id.btnEntrar)
 
-
-        //var auth = Firebase.auth aqui eu j aforneco diretamente a instacia de FirebaseAuth
-        auth = FirebaseAuth.getInstance() // aqui eu estou pegando a varivel que declarei la em cima onde disse que ela com o tipo FIrebaseAuth e estou inicializando ela com uma insatncia do FirebaseAuth
+        // Inicializa Firebase
+        auth = FirebaseAuth.getInstance()
         db = Firebase.firestore
 
-        var tipo = intent.getStringExtra("tipo")
+        // Configura hint baseado no tipo de usuário
+        val tipo = intent.getStringExtra("tipo")
         if (tipo == "aluno") {
             edtEmail.hint = "Email ou Telefone"
         } else if (tipo == "funcionario") {
             edtEmail.hint = "Id"
         }
 
+        // NOVA FUNÇÃO: Configurar toggle de visibilidade da senha
+        configurarToggleSenha()
+
         // Configura os eventos
         configurarEventos()
+    }
 
-        // Verifica se há uma nova senha passada pela Intent
-        /*val novaSenha = intent.getStringExtra("novaSenha")
-        if (novaSenha != null) {
-            senhaSalva = novaSenha // Atualiza a senha salva com a nova senha
-        }*/
+    // NOVA FUNÇÃO: Configurar o toggle de visibilidade da senha
+    private fun configurarToggleSenha() {
+        edtSenha.setOnTouchListener { _, event ->
+            val DRAWABLE_RIGHT = 2
+
+            if (event.action == MotionEvent.ACTION_UP) {
+                val drawableRight = edtSenha.compoundDrawables[DRAWABLE_RIGHT]
+
+                if (drawableRight != null && event.rawX >= (edtSenha.right - drawableRight.bounds.width())) {
+                    togglePasswordVisibility()
+                    return@setOnTouchListener true
+                }
+            }
+            false
+        }
+    }
+
+    // NOVA FUNÇÃO: Alternar visibilidade da senha
+    private fun togglePasswordVisibility() {
+        senhaVisivel = !senhaVisivel
+
+        if (senhaVisivel) {
+            // Mostrar senha
+            edtSenha.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+
+            // Trocar para ícone "olho fechado" - indica que a senha está visível
+            val eyeOffDrawable = ContextCompat.getDrawable(this, R.drawable.ic_eye_off)
+            edtSenha.setCompoundDrawablesWithIntrinsicBounds(null, null, eyeOffDrawable, null)
+
+        } else {
+            // Ocultar senha
+            edtSenha.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+            // Trocar para ícone "olho aberto" - indica que a senha está oculta
+            val eyeOnDrawable = ContextCompat.getDrawable(this, R.drawable.ic_eye)
+            edtSenha.setCompoundDrawablesWithIntrinsicBounds(null, null, eyeOnDrawable, null)
+        }
+
+        // Manter o cursor no final do texto
+        edtSenha.setSelection(edtSenha.text.length)
     }
 
     private fun configurarEventos() {
-
         val tipo = intent.getStringExtra("tipo")
 
         btnVoltar.setOnClickListener {
@@ -143,7 +182,7 @@ class TelaLogin : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Erro ao buscar aluno: ${it.localizedMessage}", Toast.LENGTH_SHORT).show()
                 }
-        }else {
+        } else {
             Toast.makeText(this, "Formato de login inválido", Toast.LENGTH_SHORT).show()
         }
     }
@@ -162,7 +201,7 @@ class TelaLogin : AppCompatActivity() {
                             .addOnSuccessListener { documents ->
                                 if (!documents.isEmpty) {
                                     val dadosUsuario = documents.documents[0]
-                                    val alunoDocId = dadosUsuario.id   // <— pega o ID Firestore gerado
+                                    val alunoDocId = dadosUsuario.id   // pega o ID Firestore gerado
 
                                     // Obtem SharedPreferences
                                     val prefs = getSharedPreferences(
@@ -171,10 +210,10 @@ class TelaLogin : AppCompatActivity() {
                                     )
                                     val editor = prefs.edit()
 
-                                    // Salva dados que você quiser
+                                    // Salva dados do usuário
                                     editor.putString("uid", uid)
                                     editor.putString("tipo", tipo)
-                                    editor.putString("alunoDocId", alunoDocId)    // <— NOVO
+                                    editor.putString("alunoDocId", alunoDocId)
                                     editor.putString("nome_usuario", dadosUsuario.getString("nome_usuario"))
                                     editor.putString("nome", dadosUsuario.getString("nome"))
                                     editor.putString("sobrenome", dadosUsuario.getString("sobrenome"))
@@ -204,11 +243,8 @@ class TelaLogin : AppCompatActivity() {
                             }
                     }
                 } else {
-
                     Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
-
                 }
-
             }
             .addOnFailureListener { excecao ->
                 val msgErro = when (excecao) {
@@ -224,7 +260,6 @@ class TelaLogin : AppCompatActivity() {
                 Toast.makeText(this, msgErro, Toast.LENGTH_LONG).show()
             }
     }
-
 
     override fun onStart() {
         super.onStart()
@@ -251,9 +286,6 @@ class TelaLogin : AppCompatActivity() {
         }
     }
 
-
-
-
     private fun isValidEmail(email: String): Boolean {
         // Regex para validar e-mails simples
         val emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
@@ -266,47 +298,8 @@ class TelaLogin : AppCompatActivity() {
     }
 
     private fun isValidPhone(phone: String): Boolean {
-        // Regex para validar números de telefone (aqui estou considerando números com 10 ou 11 dígitos)
+        // Regex para validar números de telefone (números com 10 ou 11 dígitos)
         val phonePattern = "^\\+?[0-9]{10,13}$"
         return phone.matches(phonePattern.toRegex())
     }
 }
-
-
-
-
-
-/*val usuario = edtEmail.text.toString()
-    val senha = edtSenha.text.toString()
-
-    val tipo = intent.getStringExtra("tipo") ?: run {
-        Toast.makeText(this, "Tipo de usuário não definido.", Toast.LENGTH_SHORT).show()
-        return
-    }
-
-
-    // Para alunos: valida se o e-mail ou telefone é válido
-    if (isValidEmail(usuario) || isValidPhone(usuario)) {
-        // Aqui você deve comparar o e-mail com o que está salvo
-        if (usuario == "aluno@exemplo.com" && senha == senhaSalva) {
-            val intent = Intent(this, TelaPrincipalAluno::class.java)
-            startActivity(intent)
-            finish() // Finaliza a tela de login
-        } else {
-            Toast.makeText(this, "Usuário ou senha inválidos.", Toast.LENGTH_SHORT).show()
-        }
-    } else {
-        // Caso o e-mail/telefone seja inválido
-        Toast.makeText(this, "E-mail ou telefone inválido.", Toast.LENGTH_SHORT).show()
-    }
-    if (isValidId(usuario)){
-        if (usuario == "2413103" && senha == senhaSalva) {
-            // Verifique se o ID e a senha do funcionário estão corretos
-            val intent = Intent(this, TelaFuncionario::class.java)
-            startActivity(intent)
-            finish() // Finaliza a tela de login
-        } else {
-            Toast.makeText(this, "ID ou senha inválidos.", Toast.LENGTH_SHORT).show()
-        }
-    }
-}*/

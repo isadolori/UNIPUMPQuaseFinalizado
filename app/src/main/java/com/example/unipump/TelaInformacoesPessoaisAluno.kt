@@ -23,7 +23,7 @@ class TelaInformacoesPessoaisAluno : AppCompatActivity() {
     private lateinit var primeiroNomeTv: TextView
     private lateinit var sobrenomeTv:    TextView
     private lateinit var idadeTv:        TextView
-//    private lateinit var salvarBtn:      Button
+    //    private lateinit var salvarBtn:      Button
     private lateinit var btnVoltar:      ImageView
     private lateinit var bottomNav:      BottomNavigationView
 
@@ -39,7 +39,7 @@ class TelaInformacoesPessoaisAluno : AppCompatActivity() {
 
     // recupera o ID de documento Firestore do aluno
     private val alunoDocId: String?
-        get() = prefs.getString("alunoDocId", null)
+        get() = prefs.getString("usuarioDocId", null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,6 +146,17 @@ class TelaInformacoesPessoaisAluno : AppCompatActivity() {
             "genero"       to generoEt.text.toString(),
             "telefone"     to telefoneEt.text.toString()
         )
+
+        var prefs = getSharedPreferences("alunoPrefs", MODE_PRIVATE)
+        var edit = prefs.edit()
+
+        edit.putString("nome_usuario", nomeUsuarioEt.text.toString())
+        edit.putString("endereco", enderecoEt.text.toString())
+        edit.putString("genero", generoEt.text.toString())
+        edit.putString("telefone", telefoneEt.text.toString())
+        edit.apply()
+
+
         db.collection("alunos").document(docId)
             .update(mapa)
             .addOnSuccessListener {
@@ -156,6 +167,13 @@ class TelaInformacoesPessoaisAluno : AppCompatActivity() {
                 Log.e("TelaInfoAluno", "Erro ao salvar dados", e)
 //                Toast.makeText(this, "Falha ao salvar alterações.", Toast.LENGTH_SHORT).show()
             }
+
+
+
+    }
+
+    fun atualizarDados(){
+
     }
 
     override fun onStart() {
@@ -164,13 +182,11 @@ class TelaInformacoesPessoaisAluno : AppCompatActivity() {
 
     }
 
-
     override fun onPause() {
         super.onPause()
         Log.d("Tela Informações", "onPause chamado")
 
     }
-
     override fun onStop() {
         super.onStop()
         salvarDados()
